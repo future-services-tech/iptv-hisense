@@ -26,7 +26,7 @@ git push -u origin main
 4. Clicca **Save**
 5. Dopo ~2 minuti l'app sarà disponibile su:
    ```
-   https://<TUO-USERNAME>.github.io/iptv-hisense/
+   https://future-services-tech.github.io/iptv-hisense/
    ```
 
 > ⚠️ **Nota CORS / HTTPS:** GitHub Pages serve su HTTPS. Alcuni stream IPTV
@@ -63,7 +63,7 @@ Apri `http://localhost:8080` nel browser.
    ```
 3. Compila il form che appare:
    - **App Name:** `IPTV Italia`
-   - **App URL:** `https://<TUO-USERNAME>.github.io/iptv-hisense/`
+   - **App URL:** `https://future-services-tech.github.io/iptv-hisense/`
      *(oppure `http://192.168.1.XXX:8080` per server locale)*
 4. Clicca **Install** → attendi "Installation COMPLETED!"
 5. L'app appare alla fine di **My Apps** (Home → App)
