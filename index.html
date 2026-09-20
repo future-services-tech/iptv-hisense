@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1920, initial-scale=1.0" />
+  <title>IPTV Italia — TV Hisense</title>
+  <meta name="description" content="Player IPTV canali italiani gratuiti — ottimizzato per Hisense VIDAA (So Viva)" />
+  <meta name="theme-color" content="#0a0a12" />
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       LOADING SCREEN
+  ══════════════════════════════════ -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <span class="logo-icon">📺</span>
+        <span class="logo-text">IPTV <strong>Italia</strong></span>
+      </div>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar">
+          <div class="loading-progress" id="loading-progress"></div>
+        </div>
+      </div>
+      <p class="loading-text" id="loading-text">Caricamento canali italiani…</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       ERROR SCREEN (playlist load fail)
+  ══════════════════════════════════ -->
+  <div id="error-screen" class="error-screen hidden">
+    <div class="error-screen-content">
+      <span class="error-screen-icon">⚠️</span>
+      <h2>Errore di rete</h2>
+      <p id="error-detail">Impossibile caricare la lista canali.</p>
+      <button id="retry-btn" class="btn-retry">🔄 Riprova</button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════
+       MAIN APP
+  ══════════════════════════════════ -->
+  <div id="app" class="app hidden">
+
+    <!-- SIDEBAR: Channel List -->
+    <aside id="sidebar" class="sidebar" aria-label="Lista canali">
+
+      <!-- App header inside sidebar -->
+      <div class="sidebar-header">
+        <span class="sidebar-logo">📺</span>
+        <span class="sidebar-title">IPTV <strong>Italia</strong></span>
+      </div>
+
+      <!-- Search -->
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Cerca canale…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="search-clear" class="search-clear hidden" aria-label="Cancella ricerca">✕</button>
+      </div>
+
+      <!-- Category tabs -->
+      <div class="categories-wrap" id="categories-wrap">
+        <div class="categories" id="categories" role="tablist" aria-label="Categorie">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Channel count -->
+      <div class="channel-count" id="channel-count">— canali</div>
+
+      <!-- Channel list -->
+      <div class="channel-list" id="channel-list" role="listbox" aria-label="Canali disponibili">
+        <!-- Populated by JS -->
+      </div>
+
+    </aside>
+
+    <!-- MAIN: Video Player -->
+    <main id="main" class="main">
+
+      <!-- HTML5 video element -->
+      <video id="video-player" class="video-player" autoplay playsinline></video>
+
+      <!-- No channel placeholder -->
+      <div id="placeholder" class="placeholder">
+        <div class="placeholder-inner">
+          <div class="placeholder-icon">📺</div>
+          <h2 class="placeholder-title">IPTV Italia</h2>
+          <p class="placeholder-sub">Seleziona un canale dalla lista</p>
+          <div class="placeholder-hints">
+            <span class="hint-badge">▲▼ Naviga</span>
+            <span class="hint-badge">OK Riproduci</span>
+            <span class="hint-badge">CH± Zapping</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stream loading spinner -->
+      <div id="stream-loading" class="stream-loading hidden">
+        <div class="spinner"></div>
+        <p class="spinner-label">Connessione…</p>
+      </div>
+
+      <!-- Stream error overlay -->
+      <div id="stream-error" class="stream-error hidden">
+        <span class="stream-error-icon">⚠️</span>
+        <p id="stream-error-msg">Canale non disponibile</p>
+        <p class="stream-error-hint">Premi CH± per il prossimo canale</p>
+      </div>
+
+      <!-- OSD — On Screen Display (channel info overlay) -->
+      <div id="osd" class="osd hidden" aria-live="polite">
+        <div class="osd-inner">
+          <img id="osd-logo" class="osd-logo" src="" alt="" onerror="this.style.display='none'" />
+          <div class="osd-text">
+            <span class="osd-number" id="osd-number"></span>
+            <span class="osd-name" id="osd-name"></span>
+            <span class="osd-group" id="osd-group"></span>
+          </div>
+          <div class="osd-live">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fullscreen toggle hint (shown briefly) -->
+      <div id="fs-hint" class="fs-hint hidden">
+        <span>OK → Schermo intero &nbsp;|&nbsp; ◄ → Lista canali</span>
+      </div>
+
+    </main>
+  </div><!-- /app -->
+
+  <!-- HLS.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
+  <!-- App scripts -->
+  <script src="parser.js"></script>
+  <script src="remote.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
